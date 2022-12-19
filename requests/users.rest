@@ -1,0 +1,106 @@
+@rootRoute = http://localhost:9000/api/v1/users
+
+# @name getAllUsers
+### Envia una peticion GET de todos los usuarios
+GET {{rootRoute}}
+
+
+# @name getUserById
+### Consultar un usuario por su id
+GET {{rootRoute}}/3eb05e5d-1d2c-4120-84da-6ef25d651b9a
+
+
+# @name createUser
+### Crea un nuevo usuario
+POST {{rootRoute}}
+Content-Type: application/json
+
+{
+    // Body request example
+    "firstName": "Mauricio",
+    "lastName": "contreras",
+    "email": "mauro_cons4234@example.com",
+    "password": "123",
+    "profImg": "https://www.thispersondoesnotexist.com",
+    //"profImg": "https://www.thiswaifudoesnotexist.net/example-3442.jpg",
+    "phone": "+9999999999"
+}
+
+
+# @name login
+### Iniciar session
+POST http://localhost:9000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email": "vivas_melisa@example.com",
+    "password": "123"
+  }
+
+### Store example token in variable 
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNlYjA1ZTVkLTFkMmMtNDEyMC04NGRhLTZlZjI1ZDY1MWI5YSIsImVtYWlsIjoidml2YXNfbWVsaXNhQGV4YW1wbGUuY29tIiwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY3MTE1NDI3MH0.WyzHgcmmPWZg-1u-aipMTk1lem77z0Nh3IjCtfS7mk4
+
+
+# @name queryMyUser
+### Ver mi usuario - AUTHENTICATION REQUIRED -
+GET {{rootRoute}}/me
+Authorization: JWT {{token}}
+
+
+# @name editMyUser
+### Editar mi usuario - AUTHENTICATION REQUIRED -
+PATCH {{rootRoute}}/me
+Content-Type: application/json
+Authorization: JWT {{token}}
+
+{
+    "firstName": "Melisa",
+    "lastName": "Melchoto" 
+    //"ProfImg": "", 
+    //"phone": ""
+ }
+
+
+# @name deleteMyUser
+### Eliminar mi usuario - AUTHENTICATION REQUIRED -
+DELETE {{rootRoute}}/me
+Authorization: JWT {{token}}
+
+
+
+
+# Si eres administrador puedes usar estas requests
+### Editar cualquier usuario con su id
+PATCH {{rootRoute}}/userId
+Content-Type: application/json
+Authorization: JWT {{token}}
+
+{
+    "firstName": "",
+    "lastName": "", 
+    "ProfImg": "", 
+    "phone": ""
+ }
+
+### eliminar cualquier usuario con su id - REQUIERE SER ADMIN -
+DELETE {{rootRoute}}/userId
+Authorization: JWT {{token}}
+
+
+
+## Atajos de teclado vscode
+#  ctrl + r historial de archivos y carpetas
+# ctrl + p / e navegar entre archivos abiertos
+# ctrl + f buscar palabra clave en archivo
+# f1 abrir consola vscode
+
+// ver historial de rest client
+    # f1 >rest client: view request history
+
+
+
+
+
+
+
+

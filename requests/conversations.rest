@@ -1,0 +1,116 @@
+@rootRoute = http://localhost:9000/api/v1/conversations
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNlYjA1ZTVkLTFkMmMtNDEyMC04NGRhLTZlZjI1ZDY1MWI5YSIsImVtYWlsIjoidml2YXNfbWVsaXNhQGV4YW1wbGUuY29tIiwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY3MTE1NDI3MH0.WyzHgcmmPWZg-1u-aipMTk1lem77z0Nh3IjCtfS7mk4
+
+# @name getAllConversations
+### Mostrar conversaciones del usuario loggeado - AUTHENTICATION REQUIRED -
+### http://localhost:9000/api/v1/conversations
+GET {{rootRoute}}
+Authorization: JWT {{token}}
+
+
+# @name createNewConversation
+### Crear una conversacion nueva - AUTHENTICATION REQUIRED -
+### http://localhost:9000/api/v1/conversations
+POST {{rootRoute}}
+Content-Type: application/json
+Authorization: JWT {{token}}
+
+{
+    // Body request example
+    "title" : "test 10000000",
+    "initParticipants" : "['0731a85f-0d7e-41c4-a8f6-37b07080ebc0', 'ae55a7ef-0f33-4726-b3d8-da9458e55896']",
+    "imageUrl" : "example/url"
+  }
+
+
+
+# Store ID Conversation example
+@conversation_id = 4931c28e-efb9-48f2-860b-d916e536850b
+
+
+
+# @name getConversationById
+### Obten una conversacion por su id - AUTHENTICATION REQUIRED -
+### http://localhost:9000/api/v1/conversations/conversation_id
+GET {{rootRoute}}/{{conversation_id}}
+Authorization: JWT {{token}}
+
+# @name patchConversation
+### Modifica una conversacion por su id - AUTHENTICATION REQUIRED -
+### http://localhost:9000/api/v1/conversations/conversation_id
+PATCH {{rootRoute}}/{{conversation_id}}
+Content-Type: application/json
+Authorization: JWT {{token}}
+
+{
+  "title" : "REEEEEEEENEW Test edited"
+}
+
+# @name deleteConversation
+### Elimina una conversacion por su id - AUTHENTICATION REQUIRED -
+### http://localhost:9000/api/v1/conversations/conversation_id
+DELETE  {{rootRoute}}/{{conversation_id}}
+Authorization: JWT {{token}}
+
+
+
+
+# @name createNewMessage
+### Permite crear nuevos mensajes - AUTHENTICATION REQUIRED -
+### http://localhost:9000/api/v1/conversations/conversation_id/messages
+POST {{rootRoute}}/{{conversation_id}}/messages
+Content-Type: application/json
+Authorization: JWT {{token}}
+
+{
+  "message" : "Tengo un error al crear un nueva conversacion"
+}
+
+
+# @name getMessagesByConversationId
+### Muestra todos los mensajes de una conversacion - AUTHENTICATION REQUIRED -
+### http://localhost:9000/api/v1/conversations/conversation_id/messages
+GET {{rootRoute}}/{{conversation_id}}/messages
+Authorization: JWT {{token}}
+
+
+# Store message ID example
+@message_id = ab1985aa-c06e-44ee-96cb-00f8ea2a2fb7
+
+
+# @name getMessageById
+### Recupera un mensaje con su id  - AUTHENTICATION REQUIRED -
+### http://localhost:9000/api/v1/conversations/conversation_id/messages/message_id
+GET {{rootRoute}}/{{conversation_id}}/messages/{{message_id}}
+Authorization: JWT {{token}}
+
+
+# @name deleteMessageById
+### Elimina un mensaje con su id  - AUTHENTICATION REQUIRED -
+### http://localhost:9000/api/v1/conversations/conversation_id/messages/message_id
+DELETE {{rootRoute}}/{{conversation_id}}/messages/{{message_id}}
+Authorization: JWT {{token}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
